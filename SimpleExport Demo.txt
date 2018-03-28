@@ -1,0 +1,51 @@
+//简单导出
+        SimpleExport s = null;
+
+        try {
+
+            //初始化
+            s = new SimpleExport(dto.getResponse(), "单元格合并", SimpleExport.ExcelVersionEnum.EXCEL2003);
+
+            //设置样式
+
+            //主标题
+            CellStyle mt = s.createMainTitleStyle();
+            //副标题
+            CellStyle dt = s.createDeputyTitleStyle();
+
+            //主标横向合并6个单元格
+            s.createRow(mt,50,s.set("单元格合并",6));
+
+            //副标题
+            s.createRow(dt,40,
+                    s.set("标题1",1,2), //标题1:宽-1个单元格 高-2个单元格
+                    s.set("标题2",3,1), //标题1:宽-3个单元格 高-1个单元格
+                    s.set("标题3",2,1));//标题1:宽-2个单元格 高-1个单元格
+
+            s.createRow(dt,40,
+                    s.set("标题4",2), //标题1:宽-2个单元格 高-1个单元格
+                    s.set("标题5",3));//标题1:宽-3个单元格 高-1个单元格
+
+            //普通内容
+            s.createRow(30,s.set("内容1"),s.set("内容2"),s.set("内容3"),s.set("内容4"),s.set("内容5"),s.set("内容6"));
+
+            //下拉框内容
+            String[] options = new String[]{"下拉选项1","下拉选项2","下拉选项3"};
+
+            //生成下拉框
+            s.createRow(30,
+                    s.set(s.generateOptions(options,"下拉选项1")),      //生成下拉框 默认值:下拉选项1
+                    s.set(s.generateOptions(options,"下拉选项2")),      //生成下拉框 默认值:下拉选项2
+                    s.set(s.generateOptions(options,"下拉选项3"),2),    //生成下拉框 默认值:下拉选项3 宽-2个单元格 高-1个单元格
+                    s.set(s.generateOptions(options)),                        //生成下拉框 默认值:空
+                    s.set(s.generateOptions(options,"--------")));     //生成下拉框 默认值:任意 下拉框默认值可以设置成任意值,推荐设置选项内的值
+
+
+            //导出excel:相对位置 向右移动1个单元格跨度 向下移动2个单元格跨度
+            s.excelGenerate(1,2);
+
+        } finally {
+            if (s != null) {
+                s.close();
+            }
+        }
