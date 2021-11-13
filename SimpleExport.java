@@ -1,4 +1,4 @@
-package com.excel.export;
+package com.vlinksoft.video.util;
 
 import org.apache.poi.hssf.usermodel.DVConstraint;
 import org.apache.poi.hssf.usermodel.HSSFDataValidation;
@@ -475,7 +475,7 @@ public class SimpleExport {
         Font font = workbook.createFont();
         font.setFontName(fontName);//字体
         font.setFontHeightInPoints(fontSize);// 字号
-        font.setBold(bold);//字体加粗
+        font.setBoldweight(Font.BOLDWEIGHT_BOLD);
         return font;
     }
 
@@ -501,8 +501,8 @@ public class SimpleExport {
         // 主标题样式
         CellStyle titleStyle = workbook.createCellStyle();
         titleStyle.setFont(createFont("黑体", (short) 26, true));
-        titleStyle.setVerticalAlignment(VerticalAlignment.CENTER);// 上下居中
-        titleStyle.setAlignment(HorizontalAlignment.CENTER);// 左右居中
+        titleStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);// 上下居中
+        titleStyle.setAlignment(CellStyle.ALIGN_CENTER);// 左右居中
         titleStyle.setWrapText(true);//设置自动换行
 
         return titleStyle;
@@ -522,8 +522,8 @@ public class SimpleExport {
         CellStyle titleStyle = workbook.createCellStyle();
         titleStyle.setFont(createFont("仿宋_GB2312", (short) 12, true));//设置字体
         setBorder(titleStyle, true, true, true, true);//设置边框线
-        titleStyle.setAlignment(HorizontalAlignment.CENTER);// 左右居中
-        titleStyle.setVerticalAlignment(VerticalAlignment.CENTER);// 上下居中
+        titleStyle.setAlignment(CellStyle.ALIGN_CENTER);// 左右居中
+        titleStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);// 上下居中
         titleStyle.setWrapText(true);//设置自动换行
 
         return titleStyle;
@@ -545,8 +545,8 @@ public class SimpleExport {
 
         contentStyle.setFont(contentFont);//设置字体
         setBorder(contentStyle, true, true, true, true);//设置边框线
-        contentStyle.setAlignment(HorizontalAlignment.CENTER);// 左右居中
-        contentStyle.setVerticalAlignment(VerticalAlignment.CENTER);// 上下居中
+        contentStyle.setAlignment(CellStyle.ALIGN_CENTER);// 左右居中
+        contentStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);// 上下居中
         contentStyle.setWrapText(true);//设置自动换行
 
         return contentStyle;
@@ -566,19 +566,19 @@ public class SimpleExport {
     public void setBorder(CellStyle cellStyle, boolean top, boolean bottom, boolean left, boolean right) {
         //设置上边框
         if (top) {
-            cellStyle.setBorderTop(BorderStyle.THIN);// 上边框
+            cellStyle.setBorderTop(CellStyle.BORDER_THIN);// 上边框
         }
         //设置下边框
         if (bottom) {
-            cellStyle.setBorderBottom(BorderStyle.THIN);// 下边框
+            cellStyle.setBorderBottom(CellStyle.BORDER_THIN);// 下边框
         }
         //设置左边框
         if (left) {
-            cellStyle.setBorderLeft(BorderStyle.THIN);// 左边框
+            cellStyle.setBorderLeft(CellStyle.BORDER_THIN);// 左边框
         }
         //设置右边框
         if (right) {
-            cellStyle.setBorderRight(BorderStyle.THIN);// 右边框
+            cellStyle.setBorderRight(CellStyle.BORDER_THIN);// 右边框
         }
     }
 
